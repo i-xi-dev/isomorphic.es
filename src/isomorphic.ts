@@ -5,7 +5,16 @@ function _isIsomorphicEncoded(value: string): boolean {
   return /^[\u{0}-\u{FF}]*$/u.test(value);
 }
 
-namespace IsomorphicEncoding {
+/**
+ * Isomorphic encoding
+ */
+namespace Isomorphic {
+  /**
+   * Implements [isomorphic decode](https://infra.spec.whatwg.org/#isomorphic-decode) defined in WHATWG Infra Standard.
+   *
+   * @param input A byte sequence.
+   * @returns A string that represents a byte sequence by the code point.
+   */
   export function decode(input: BufferSource = new Uint8Array(0)): string {
     let bytes: Uint8Array;
     if (ArrayBuffer.isView(input)) {
@@ -30,6 +39,12 @@ namespace IsomorphicEncoding {
     return chars.join("");
   }
 
+  /**
+   * Implements [isomorphic encode](https://infra.spec.whatwg.org/#isomorphic-encode) defined in WHATWG Infra Standard.
+   *
+   * @param input A string that does not contain code points greater than `U+00FF`.
+   * @returns A byte sequence of isomorphic encoded `input`.
+   */
   export function encode(input = ""): Uint8Array {
     if (_isIsomorphicEncoded(input) !== true) {
       throw new TypeError("input");
@@ -42,6 +57,6 @@ namespace IsomorphicEncoding {
     return bytes;
   }
 }
-Object.freeze(IsomorphicEncoding);
+Object.freeze(Isomorphic);
 
-export { IsomorphicEncoding };
+export { Isomorphic };

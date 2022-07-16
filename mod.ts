@@ -1,1 +1,1 @@
-export * from "./src/isomorphic_encoding.ts";
+export * from "./src/isomorphic.ts";
