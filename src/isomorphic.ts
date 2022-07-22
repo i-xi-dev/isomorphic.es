@@ -1,5 +1,3 @@
-//
-
 function _isIsomorphicEncoded(value: string): boolean {
   // deno-lint-ignore no-control-regex
   return /^[\u{0}-\u{FF}]*$/u.test(value);
